@@ -1,3 +1,6 @@
+<?php
+	$this->load->helper('url');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +16,17 @@
 	<h1>Formulario</h1>
 
 	<div id="body">
-		<?php $this->load->view("form_lista_simples"); ?>
+		<?php //$this->load->view("form_lista_simples"); ?>
 
 	</div>	
 
 	<div id="body">
 
-		<p>Gerar uma lista simples com dados básicos dos alunos</p>
-		<code><a href="#">Gerar Lista Simples</a></code>
+		<p>Criar uma lista com dados básicos dos alunos (ex.: Nome, Número de polícia, turma etc)</p>
+		<code><?php echo anchor("lista/criarLista", "Criar"); ?></code>
+
+		<p>Editar uma lista existente</p>
+		<code><a href="#">Editar</a></code>
 
 	</div>
 
@@ -29,5 +35,3 @@
 
 </body>
 </html>
-
-lista_simples

@@ -14,7 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+//$config['base_url']	= 'http://172.26.12.125/dev/';
+$config['base_url']	= 'http://127.0.0.1/cfsd/dev/';
 
 /*
 |--------------------------------------------------------------------------
