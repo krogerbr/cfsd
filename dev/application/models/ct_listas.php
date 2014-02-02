@@ -32,15 +32,49 @@ class Ct_listas extends CI_Model {
         } else {
             echo "Erro ao salvar lista";
         }
-        // data_criacao
-        // head_list
-        // list_id
     }
 
-    public function getList(){
+    /**
+     *
+     *
+     */
+    public function getDataList($Lista_id){
+        // $query = $this->db->get_where('dt_listas', array('lista_id' => $Lista_id));
 
+        $this->db->select('cabecalho')
+        ->from('ct_listas')
+        ->where("lista_id = $Lista_id");
+
+        $head = $query = $this->db->get();
+
+        var_dump(json_decode( $head->result()); exit();
+
+        $this->db->select('
+            B.nome as al_nome,
+            B.nome_funcional,
+            B.num_pm,
+            B.num_curso,
+            B.turma,
+            C.grau_hierarquico,
+            C.nome as sp_nome
+        ')
+        ->from('dt_listas A')
+            ->join('ct_alunos B', 'B.al_id = A.al_id')
+            ->join('ct_superiores C', 'C.superior_id = A.responsavel_id')
+        ->where('A.lista_id', $Lista_id);
+
+        $query = $this->db->get();
+
+        if ( $query->num_rows() > 0 ) {
+            return $query->result();            
+        }
+        return false;
     }
 
+    /**
+     *
+     *
+     */
     public function getAllList(){
         $query = $this->db->get('ct_listas');
 

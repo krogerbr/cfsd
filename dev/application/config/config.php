@@ -329,6 +329,7 @@ $config['compress_output'] = FALSE;
 | regarding date handling.
 |
 */
+date_default_timezone_set('UTC');
 $config['time_reference'] = 'local';
 
 

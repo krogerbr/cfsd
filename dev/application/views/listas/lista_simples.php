@@ -23,10 +23,10 @@
 	<div id="body">
 
 		<p>Criar uma lista com dados básicos dos alunos (ex.: Nome, Número de polícia, turma etc)</p>
-		<code><?php echo anchor("lista/criarLista", "Criar"); ?></code>
+		<code><?php echo anchor("lista/create_list", "Criar"); ?></code>
 
 		<p>Editar uma lista existente</p>
-		<code><a href="#">Editar</a></code>
+		<code><?php echo anchor("lista/select_list", "Editar"); ?></code>
 
 	</div>
 

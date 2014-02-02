@@ -16,7 +16,7 @@
 	<div id="body">
 
 		<p>Gerar uma nova lista ou Editar uma existente</p>
-		<code><a href="<?php echo base_url(); ?>lista">Listas</a></code>
+		<code><a href="<?php echo site_url(); ?>/lista">Listas</a></code>
 
 	</div>
 
