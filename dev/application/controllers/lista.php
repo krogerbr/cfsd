@@ -40,6 +40,7 @@ class Lista extends CI_Controller {
 		$this->load->model("ct_listas");
 		
 		$data["data_list"] = $this->ct_listas->getDataList($lista_id);
+		$data["head"] = $this->ct_listas->getHead($lista_id);
 
 		$this->load->view("listas/edit_list", $data);		
 
@@ -86,6 +87,10 @@ class Lista extends CI_Controller {
 			echo "Lista Criada com SUCESSO!!";
 
 		}
+	}
+
+	public function set_aluno(){
+		
 	}
 
 	public function tst(){

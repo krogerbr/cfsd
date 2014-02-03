@@ -41,23 +41,40 @@ class Ct_listas extends CI_Model {
     public function getDataList($Lista_id){
         // $query = $this->db->get_where('dt_listas', array('lista_id' => $Lista_id));
 
-        $this->db->select('cabecalho')
-        ->from('ct_listas')
-        ->where("lista_id = $Lista_id");
+        $head = $this->getHead($Lista_id);
 
-        $head = $query = $this->db->get();
+        $fields = '';
 
-        var_dump(json_decode( $head->result()); exit();
+        foreach ($head as $key => $value) {
+            switch ($value) {
+                case 'num_pm': $fields .= 'B.num_pm, ';
+                    break;
+                case 'nome': $fields .= 'B.nome as al_nome, ';
+                    break;
+                case 'nome_funcional': $fields .= 'B.nome_funcional, ';
+                    break;
+                case 'turma': $fields .= 'B.turma, ';
+                    break;
+                case 'num_curso': $fields .= 'B.num_curso, ';
+                    break;
 
-        $this->db->select('
-            B.nome as al_nome,
-            B.nome_funcional,
-            B.num_pm,
-            B.num_curso,
-            B.turma,
-            C.grau_hierarquico,
-            C.nome as sp_nome
-        ')
+                case 'grau_hierarquico': $fields .= 'C.grau_hierarquico, ';
+                    break;
+                case 'responsavel': $fields .= 'C.nome as sp_nome, ';
+                    break;
+            }
+        }            
+
+        // $this->db->select('
+        //     B.nome as al_nome,
+        //     B.nome_funcional,
+        //     B.num_pm,
+        //     B.num_curso,
+        //     B.turma,
+        //     C.grau_hierarquico,
+        //     C.nome as sp_nome
+        // ')
+        $this->db->select( $fields )
         ->from('dt_listas A')
             ->join('ct_alunos B', 'B.al_id = A.al_id')
             ->join('ct_superiores C', 'C.superior_id = A.responsavel_id')
@@ -69,6 +86,17 @@ class Ct_listas extends CI_Model {
             return $query->result();            
         }
         return false;
+    }
+
+    public function getHead($Lista_id){
+
+        $this->db->select('cabecalho')
+        ->from('ct_listas')
+        ->where("lista_id = $Lista_id");
+
+        $head = $this->db->get()->result();
+
+        return json_decode( $head[0]->cabecalho );
     }
 
     /**
@@ -91,6 +119,10 @@ class Ct_listas extends CI_Model {
             return $query->result();
         }
         return false;
+    }
+
+    public function setAlOnList(){
+        echo "ok";
     }
 
     

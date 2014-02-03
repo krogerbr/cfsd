@@ -7,6 +7,10 @@
 	<meta charset="utf-8">
 	<title>Index</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/table.css">
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/sorttable.js"></script>
+
 </head>
 <body>
 
@@ -15,32 +19,59 @@
 
 	<div id="body">
 
-		<p>Gerar uma nova lista ou Editar uma existente</p>
-		<code><a href="<?php echo site_url(); ?>/lista">Listas</a></code>
+		<h3>Pesquisar aluno para ser inserido:</h3>
+
+		<?php 
+			$this->load->view("listas/form_insert_data_list"); 
+		?>
 
 
 		<table class="sortable">
 			<tr>
-				<th>Número de Polícia</th>
-				<th>Nome</th>
-				<th>Nome Funcional</th>
-				<th>Turma</th>
-				
+				<?php 
+				foreach ($head as $key => $value) {
+		            switch ($value) {
+		                case 'num_pm': echo "<th>Número de Polícia</th>";
+		                    break;
+						case 'nome': echo "<th>Nome</th>";
+		                    break;
+		                case 'nome_funcional': echo "<th>Nome Funcional</th>";
+		                    break;
+		                case 'turma': echo "<th>Turma</th>";
+		                    break;
+		                case 'num_curso': echo "<th>Número de Curso</th>";
+		                    break;
+
+		                case 'responsavel': echo "<th>Responsável</th>";
+		                    break;
+					}
+				}
+				?>
 			</tr>
-		<?php
+			<?php
 			foreach ($data_list as $key => $value) {
+				echo "<tr>";
+				foreach ($value as $key2 => $value2) {
+					switch ($key2) {
+		                case 'num_pm': echo "<td>$value2</td>";
+		                    break;
+						case 'al_nome': echo "<td>$value2</td>";
+		                    break;
+		                case 'nome_funcional': echo "<td>$value2</td>";
+		                    break;
+		                case 'turma': echo "<td>$value2</td>";
+		                    break;
+		                case 'num_curso': echo "<td>$value2</td>";
+		                    break;
 
-
-public 'al_nome' => string 'DENER VERSIANI KROGER FILHO' (length=27)
-      public 'nome_funcional' => string 'KROGER' (length=6)
-      public 'num_pm' => string '1616663' (length=7)
-      public 'num_curso' => string '472' (length=3)
-      public 'turma' => string '10' (length=2)
-      public 'grau_hierarquico' => string 'SGT' (length=3)
-      public 'sp_nome' => string 'BRENO' (length=5)
-
+		                case 'responsavel': echo "<td>$value->grau_hierarquico $value->responsavel</td>";
+		                    break;
+					}
+				}
+				echo "</tr>";
 			}
-		?>
+			?>
+		</table>
 
 	</div>
 
