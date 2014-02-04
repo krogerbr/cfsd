@@ -27,19 +27,19 @@
 				<th>Ações</th>
 			</tr>
 			<?php
-
-			foreach ($listas as $key => $value) {
-				echo "<tr>";
-					echo "<td><b>" . $value->nome ."</b></td>";
-					echo "<td>" . date( 'd/m/Y - H:i', strtotime($value->data_criacao)) . "</td>";
-					echo "<td>";
-						echo anchor("lista/edit_list/".$value->lista_id, "<img src='".base_url()."/img/ico_edit.png' alt='Editar' height='21' width='21'>");
-						echo "&ensp;" . anchor("lista/delete_list", "<img src='".base_url()."/img/delete-xxl.png' alt='Editar' height='18' width='18'>");
-					echo "</td>";
-				echo "</tr>";
-				 
+			
+			if ($listas) {
+				foreach ($listas as $key => $value) {
+					echo "<tr>";
+						echo "<td><b>" . $value->nome ."</b></td>";
+						echo "<td>" . date( 'd/m/Y - H:i', strtotime($value->data_criacao)) . "</td>";
+						echo "<td>";
+							echo anchor("lista/edit_list/".$value->lista_id, "<img src='".base_url()."/img/ico_edit.png' alt='Editar' height='21' width='21'>");
+							echo "&ensp;" . anchor("lista/delete_list", "<img src='".base_url()."/img/delete-xxl.png' alt='Editar' height='18' width='18'>");
+						echo "</td>";
+					echo "</tr>";
+				}
 			}
-
 			?>
 
 		</table>

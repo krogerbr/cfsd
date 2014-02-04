@@ -1,0 +1,19 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Listas extends CI_Controller {
+
+	public function index(){
+		//$this->load->view('welcome_message');
+		$this->load->view('listas/lista_simples');
+	}
+
+
+
+	public function test(){
+		echo "ok";
+		$this->load->db();
+		echo "ok";
+
+		//echo $this->bd->query("show databases");
+	}
+}

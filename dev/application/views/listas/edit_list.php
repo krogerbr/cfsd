@@ -10,12 +10,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/table.css">
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>js/sorttable.js"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>js/script.js"></script>
 
 </head>
 <body>
 
 <div id="container">
-	<h1>Links Úteis</h1>
+	<h1>Lista</h1>
 
 	<div id="body">
 
@@ -49,26 +50,28 @@
 				?>
 			</tr>
 			<?php
-			foreach ($data_list as $key => $value) {
-				echo "<tr>";
-				foreach ($value as $key2 => $value2) {
-					switch ($key2) {
-		                case 'num_pm': echo "<td>$value2</td>";
-		                    break;
-						case 'al_nome': echo "<td>$value2</td>";
-		                    break;
-		                case 'nome_funcional': echo "<td>$value2</td>";
-		                    break;
-		                case 'turma': echo "<td>$value2</td>";
-		                    break;
-		                case 'num_curso': echo "<td>$value2</td>";
-		                    break;
+			if ( $data_list ) {
+				foreach ($data_list as $key => $value) {
+					echo "<tr>";
+					foreach ($value as $key2 => $value2) {
+						switch ($key2) {
+			                case 'num_pm': echo "<td>$value2</td>";
+			                    break;
+							case 'al_nome': echo "<td>$value2</td>";
+			                    break;
+			                case 'nome_funcional': echo "<td>$value2</td>";
+			                    break;
+			                case 'turma': echo "<td>$value2</td>";
+			                    break;
+			                case 'num_curso': echo "<td>$value2</td>";
+			                    break;
 
-		                case 'responsavel': echo "<td>$value->grau_hierarquico $value->responsavel</td>";
-		                    break;
+			                case 'responsavel': echo "<td>$value->grau_hierarquico $value->responsavel</td>";
+			                    break;
+						}
 					}
+					echo "</tr>";
 				}
-				echo "</tr>";
 			}
 			?>
 		</table>

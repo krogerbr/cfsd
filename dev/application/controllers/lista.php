@@ -2,6 +2,11 @@
 
 class Lista extends CI_Controller {
 
+	public function __construct() {
+        // Call the Model constructor
+        parent::__construct();
+    }
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -87,6 +92,63 @@ class Lista extends CI_Controller {
 			echo "Lista Criada com SUCESSO!!";
 
 		}
+	}
+
+	public function find_aluno(){
+
+		$this->load->library('session');
+
+		$check = $this->session->userdata('check');
+
+		// os dados dessa solicitação ja foram requisitados ao BD
+		if ($check == $this->input->post()) {
+			return;
+
+		} else {
+			// Model para dados na tabela de alunos
+			$this->load->model("ct_alunos");
+			// Grava valores na sessao para evitar buscar novamente os mesmos dados
+			$this->session->set_userdata( 'check',$this->input->post() );
+			
+			// parametros para busca
+			$search['field'] = key($this->input->post());
+			$search['data']  = $this->input->post($search['field']);
+
+			// $result = $this->ct_alunos->find_aluno($search);
+			$this->ct_alunos->findAluno($search);
+
+			// if ( $result !== false ){
+			// 	echo json_encode($result);
+			// }
+
+		}
+
+		// $this->load->library('session');
+
+		// $this->session->userdata('item');
+
+		// $this->session->set_userdata($array);
+
+		// $this->session->unset_userdata('some_name');
+
+		
+		// if ( $this->Bkp_data == $check ){
+		// 	echo "mesmos dados";
+		// 	var_dump($check);
+		// 	var_dump($this->Bkp_data);
+
+		// } else {
+		// 	$this->Bkp_data = $check;
+		// 	echo "dados diferentes";
+		// 	var_dump($check);
+		// 	var_dump($this->Bkp_data);
+		// }
+		
+		// $data = array(
+		// 	"nome" => "dener",
+		// 	"num_pm" => "1616663",
+		// );
+		// echo json_encode($data);
 	}
 
 	public function set_aluno(){
